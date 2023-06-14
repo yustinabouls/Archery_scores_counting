@@ -1,0 +1,52 @@
+//Name: Archery competition (Nested loops)
+//Author: Ahmed Elsharawy
+//Start Date: 01-20-2020
+//Purpose: Practice lab to use nested loops for OOP 2200
+
+#include <iostream> //Basic input and output services for C++
+#include <iomanip>  //Defines manipulator functions such as (setprecision)
+
+using namespace std;
+int main()
+{
+    const int NUMOFARCHERS = 3; //Constant that defines the number of archers
+    const int NUMOFENDS = 4;    //Constant that defines the number of ends
+    const int MINIMUM = 1;      //Constant that defines the minimum number of scores
+    const int MAXIMUM = 60;     //Constant that defines the maximum number of scores
+    int total = 0;              //An int variable that stores the total for each archer
+    int sum = 0;                //An int variable that stores the total sum of all archers
+    int score = 0;              //An int variable that stores the score of each archer
+    double average = 0.0;       //A double variable that stores the average of all players
+
+    cout << "\t\t\tARCHERY SCORES CALCULATOR" << endl;
+    cout << "\t\t\t=========================" << endl;
+    for (int archer = 1; archer <= NUMOFARCHERS; archer++) //For loop that controls the number of archers to 3
+    {
+        total = 0;
+
+        for (int ends = 1; ends <= NUMOFENDS; ends++) //For loop that controls the number of ends
+        {
+            cout << "\nEnter the score for archer " << archer << " In end number " << ends << ": ";
+
+            while (!(cin >> score) || score > MAXIMUM || score < MINIMUM) //While loop that validates the data that is being input into (cin)
+            {
+                cout << "\n\nPlease enter only numeric values between " << MINIMUM << " and " << MAXIMUM << endl;
+                cout << "\nEnter the score for archer " << archer << " In end number " << ends << ": ";
+                cin.clear();
+                cin.ignore(123, '\n');
+            }
+
+            total += score; //Calculates and stores the total for each archer
+            sum += total;   //Stores the sum of the total for all archers
+        }
+
+        cout << "\n\nThe total for archer " << archer << " is: " << total << endl
+             << endl;
+        average = sum / (NUMOFARCHERS * NUMOFENDS); //Calculates the total average
+    }
+
+    cout << "\nThe average of all ends is: " << fixed << setprecision(1) << average << endl; //Displays the total average
+
+    cout << endl << endl;
+    return 0;
+}
